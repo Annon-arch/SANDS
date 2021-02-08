@@ -20,6 +20,7 @@ For [BERT](#BERT), [BICE](#BICE), [LP-SVM](#LP-SVM), [SVM](#SVM), [SiamNet](#Sia
 * Run the code using ```python3 bert.py --data $DATA```. $DATA will take the path of the directory where the data is stored.
 
 ## BICE
+### To Run BICE:
 * Run the code using ```python3 baseline_bice.py --data $DATA --task $TASK```. $DATA will take the path of the directory where the data is stored. $TASK can be either USA or India depending on the task you are running the model for.
 
 ## LP-SVM
@@ -40,3 +41,6 @@ For [BERT](#BERT), [BICE](#BICE), [LP-SVM](#LP-SVM), [SVM](#SVM), [SiamNet](#Sia
 * Run the code using ```python3 tan.py --task $TASK --data $DATA```. $DATA will take the path of the directory where the data is stored. $TASK can be either USA or India depending on the task you are running the model for.
 
 ## UST
+### To Run UST:
+* Run the code using ```PYTHONHASHSEED=42 python3 run_ust.py --task $DATA --model_dir $OUTPUT_DIR --seq_len 128 --sample_scheme easy_uni_class_conf --sup_labels -1 --valid_split -1 --pt_teacher TFBertModel --pt_teacher_checkpoint bert-base-uncased --N_base 3 --sup_batch_size 16 --sup_epochs 10 --unsup_epochs 10```. $DATA will take the path of the directory where the data is stored.
+* To get the classification report for the model on test data, run the following command ```python3 classification_report_UST.py --task $DATA --model_path $MODEL --seq_len 128 --pt_teacher TFBertModel --pt_teacher_checkpoint bert-base-uncased```. $DATA will take the path of the directory where the data is stored. $MODEL is the path of the model.
