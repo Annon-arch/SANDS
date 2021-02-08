@@ -20,6 +20,7 @@ For [BERT](#BERT), [BICE](#BICE), [LP-SVM](#LP-SVM), [SVM](#SVM), [SiamNet](#Sia
 * Run the code using ```python3 bert.py --data $DATA```. $DATA will take the path of the directory where the data is stored.
 
 ## BICE
+* Run the code using ```python3 baseline_bice.py --data $DATA --task $TASK```. $DATA will take the path of the directory where the data is stored. $TASK can be either USA or India depending on the task you are running the model for.
 
 ## LP-SVM
 ### To Run LP-SVM:
@@ -36,7 +37,6 @@ For [BERT](#BERT), [BICE](#BICE), [LP-SVM](#LP-SVM), [SVM](#SVM), [SiamNet](#Sia
 
 ## TAN
 ### To Run TAN:
-* Download data for [StanceUS](https://drive.google.com/drive/folders/13k_-fjIO93L2BCoiZu7Ahl5Kxo1HwPyC?usp=sharing) or [StanceIN](https://drive.google.com/drive/folders/1F3luvM0VRS67vZReNolOEDeOL62CZi0x?usp=sharing) according to your requirements.
 * Run the code using ```python3 tan.py --task $TASK --data $DATA```. $DATA will take the path of the directory where the data is stored. $TASK can be either USA or India depending on the task you are running the model for.
 
 ## UST
