@@ -8,7 +8,7 @@ Original file is located at
 """
 
 import torch
-from tqdm.notebook import tqdm
+# from tqdm.notebook import tqdm
 
 from transformers import BertTokenizer
 from torch.utils.data import TensorDataset
@@ -47,7 +47,7 @@ with open(data_dir + '/test', 'rb') as F:
 TweetInfoDF = pd.read_csv(data_dir + '/TweetInfoDF.csv')
 TweetInfoDFText = list(TweetInfoDF['text'])
 
-N = len(np.unique(train['Tags']))
+N = len(np.unique(train['Tag']))
 label_dict = dict()
 
 for i in range(N):

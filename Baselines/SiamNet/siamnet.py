@@ -60,7 +60,7 @@ with open(data_dir + '/test', 'rb') as F:
 
 TweetInfoDF = pd.read_csv(data_dir + '/TweetInfoDF.csv')
 TweetInfoDFText = list(TweetInfoDF['text'])
-num_class = len(np.unique(train['Tags']))
+num_class = len(np.unique(train['Tag']))
 
 def load_glove_matrix(vec_file):
     word2vec = {}

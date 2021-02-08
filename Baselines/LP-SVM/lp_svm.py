@@ -127,6 +127,7 @@ test_cleaned_tweets = copy.deepcopy(cleaned_tweets)
 cleaned_tweets = []
 cleaned_tweets = test_cleaned_tweets
 cleaned_tweets.extend(train_cleaned_tweets)
+cleaned_tweets.extend(copy.deepcopy(EncodedTweetDFLabel_without_label_INFO_cleaned_tweets))
 
 word_vectorizer = TfidfVectorizer(
     sublinear_tf=True,

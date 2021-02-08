@@ -59,7 +59,7 @@ with open(data_dir + '/test', 'rb') as F:
 
 TweetInfoDF = pd.read_csv(data_dir + '/TweetInfoDF.csv')
 TweetInfoDFText = list(TweetInfoDF['text'])
-num_classes = len(np.unique(train['Tags']))
+num_classes = len(np.unique(train['Tag']))
 
 def remove_punctuations_and_numbers(String):
     L = []
@@ -122,6 +122,16 @@ def encoding(max_length, TAG_TWEET, TAG):
 def generate_sample_weights(training_data, class_weight_dictionary): 
     sample_weights = [class_weight_dictionary[np.where(one_hot_row==1)[0][0]] for one_hot_row in training_data]
     return np.asarray(sample_weights)
+
+def mapping(TagList):
+    NewTagList = []
+    for tag in TagList:
+        L = np.zeros((1,num_classes))
+        tag_list = [tag]
+        for m in tag_list:
+            L[0,m] = 1
+        NewTagList.append(L)
+    return NewTagList
 
 cleaned_tweets = []
 L = 0
