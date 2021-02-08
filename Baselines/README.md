@@ -42,5 +42,10 @@ For [BERT](#BERT), [BICE](#BICE), [LP-SVM](#LP-SVM), [SVM](#SVM), [SiamNet](#Sia
 
 ## UST
 ### To Run UST:
+* Download data for [StanceUS](https://drive.google.com/drive/folders/1H2rNGDpOuxV25SdoYBFqDKlyUyteAU2S?usp=sharing) or [StanceIN](https://drive.google.com/drive/folders/1SS5_Ii7LnoG8gebpvC7xaL_JrPRy2Hfl?usp=sharing) according to your requirements.
+* To run the model, the path of the directory where the data is stored is required as a command-line argument. For train-test split with train size:
+  * 500: It will be the path to the sub-directory named train_split_500 in the data you downloaded earlier
+  * 1000: It will be the path to the sub-directory train_split_1000
+  * 1500: It will be the path to the sub-directory train_split_1500
 * Run the code using ```PYTHONHASHSEED=42 python3 run_ust.py --task $DATA --model_dir $OUTPUT_DIR --seq_len 128 --sample_scheme easy_uni_class_conf --sup_labels -1 --valid_split -1 --pt_teacher TFBertModel --pt_teacher_checkpoint bert-base-uncased --N_base 3 --sup_batch_size 16 --sup_epochs 10 --unsup_epochs 10```. $DATA will take the path of the directory where the data is stored.
 * To get the classification report for the model on test data, run the following command ```python3 classification_report_UST.py --task $DATA --model_path $MODEL --seq_len 128 --pt_teacher TFBertModel --pt_teacher_checkpoint bert-base-uncased```. $DATA will take the path of the directory where the data is stored. $MODEL is the path of the model.
