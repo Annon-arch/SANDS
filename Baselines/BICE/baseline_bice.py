@@ -223,6 +223,7 @@ with open(data_dir + '/test', 'rb') as F:
 TweetInfoDF = pd.read_csv(data_dir + '/TweetInfoDF.csv', engine='python')
 
 num_classes = len(np.unique(X_train['Tag']))
+print(num_classes, "--------")
 
 with open(data_dir + '/EncodedDataFrameWithLabel', 'rb') as F:
     EncodedTweetDFLabel = pickle.load(F)
@@ -249,7 +250,7 @@ Tweet_list = []
 Target_list = []
 Stance_list = []
 Id = []
-print(X_train.head(2))
+
 for i,j in X_train.iterrows():
     try:
         tw = j['Tweet']
@@ -307,14 +308,14 @@ tweet_tokens = tokenise_tweets(tweets, stopwords)
 target_tokens = tokenise_tweets(transform_targets(targets), stopwords)
 transformed_tweets = [transform_tweet(w2vmodel.wv, senttoks) for senttoks in tweet_tokens]
 transformed_targets = [transform_tweet(w2vmodel.wv, senttoks) for senttoks in target_tokens]
-transformed_labels = transform_labels(labels, 5)
+transformed_labels = transform_labels(labels, num_classes)
 
 tweet_tokens_test = tokenise_tweets(tweets_test, stopwords)
 target_tokens_test = tokenise_tweets(transform_targets(targets_test), stopwords)
 
 transformed_tweets_test = [transform_tweet(w2vmodel.wv, senttoks) for senttoks in tweet_tokens_test]
 transformed_targets_test = [transform_tweet(w2vmodel.wv, senttoks) for senttoks in target_tokens_test]
-transformed_labels_test = transform_labels(labels_test, 5)
+transformed_labels_test = transform_labels(labels_test, num_classes)
 
 targetInTweet = {}
 id_tweet_dict = dict(zip(ids_test, tweets_test))
@@ -626,7 +627,7 @@ def train(testsetting, w2vmodel, tweets, targets, labels, ids,
           max_epochs, tanhOrSoftmax, dropout, modeltype="conditional",
           targetInTweet={}, testid = "test-1", pretrain = "pre_cont", acc_thresh=0.9, sep = False):
     
-    target_size = 5
+    target_size = num_classes
     max_seq_length = len(tweets[0])
     print(max_seq_length, 'max_seq_length')
 
