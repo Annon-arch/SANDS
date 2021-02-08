@@ -41,7 +41,7 @@ parser.add_argument("--task", required=True, help="USA or India")
 
 args = vars(parser.parse_args())
 data_dir = args["data"]
-TARGET = args["target"]
+# TARGET = args["target"]
 GLOVE_FILE = args["glove_vector_file"]
 task_name = args["task"]
 
@@ -260,7 +260,7 @@ save_glove_matrix(word2vec, word_index,
                   data_dir+"glove_matrix",
                   mean, max_val, std_dev)
 
-embedding_matrix_1500 = np.load(open(data_dir+"glove_matrix.npy", 'rb'))
+embedding_matrix = np.load(open(data_dir+"glove_matrix.npy", 'rb'))
 
 num_tokens = len(word_index) + 1
 batch_size = 32

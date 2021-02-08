@@ -222,7 +222,7 @@ with open(data_dir + '/test', 'rb') as F:
 
 TweetInfoDF = pd.read_csv(data_dir + '/TweetInfoDF.csv', engine='python')
 
-num_classes = len(np.unique(train['Tags']))
+num_classes = len(np.unique(X_train['Tag']))
 
 with open(data_dir + '/EncodedDataFrameWithLabel', 'rb') as F:
     EncodedTweetDFLabel = pickle.load(F)
