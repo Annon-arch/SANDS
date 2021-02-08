@@ -13,7 +13,7 @@ import json
 from tqdm import tqdm
 import numpy as np
 from gensim.models import KeyedVectors
-import os, copy, pickle, string, re, nltk
+import os, copy, pickle, string, re, nltk, sys
 from scipy.stats import truncnorm
 from collections import Counter
 from sklearn.model_selection import train_test_split
@@ -37,11 +37,19 @@ nltk.download('punkt')
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--data", required=True, help="path of the directory containing data files")
-parser.add_argument("--target", required=True)
+parser.add_argument("--task", required=True, help="USA or India")
 
 args = vars(parser.parse_args())
 data_dir = args["data"]
-target_ = args["target"]
+task_name = args["task"]
+
+if task_name=='USA':
+    target_ = 'republican democratic political party usa'
+elif task_name=='India':
+    target_ = 'congress bjp aap political party india'
+else:
+    sys.exit()
+
 
 with open(data_dir + '/train', 'rb') as F:
     train = pickle.load(F)

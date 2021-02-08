@@ -14,7 +14,7 @@ import re
 import string
 from nltk.corpus import stopwords
 import pandas as pd
-import random import shuffle
+from random import shuffle
 
 from sklearn.metrics import classification_report
 from sklearn.model_selection import train_test_split

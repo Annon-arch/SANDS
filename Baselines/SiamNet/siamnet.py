@@ -30,18 +30,27 @@ from tensorflow.keras.layers import Layer
 from tensorflow.keras.models import Model, Sequential
 from tensorflow.keras.layers import Input, Embedding, LSTM, Bidirectional, Dense, Dropout
 from sklearn.metrics import classification_report
+import argparse
 
 nltk.download('punkt')
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--data", required=True, help="path of the directory containing data files")
-parser.add_argument("--target", required=True)
 parser.add_argument("--glove_vector_file", required=True)
+parser.add_argument("--task", required=True, help="USA or India")
 
 args = vars(parser.parse_args())
 data_dir = args["data"]
 TARGET = args["target"]
 GLOVE_FILE = args["glove_vector_file"]
+task_name = args["task"]
+
+if task_name=='USA':
+    TARGET = 'republican democratic political party usa'
+elif task_name=='India':
+    TARGET = 'congress bjp aap political party india'
+else:
+    sys.exit()
 
 with open(data_dir + '/train', 'rb') as F:
     train = pickle.load(F)
