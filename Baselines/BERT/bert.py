@@ -8,7 +8,7 @@ Original file is located at
 """
 
 import torch
-# from tqdm.notebook import tqdm
+from tqdm import tqdm
 
 from transformers import BertTokenizer
 from torch.utils.data import TensorDataset
