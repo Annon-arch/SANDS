@@ -176,7 +176,7 @@ dataloader_validation = DataLoader(dataset_val,
                                    sampler=SequentialSampler(dataset_val), 
                                    batch_size=batch_size)
 
-optimizer = AdamW(model_500.parameters(), lr=1e-5, eps=1e-8)
+optimizer = AdamW(model.parameters(), lr=1e-5, eps=1e-8)
 
 epochs = 10
 

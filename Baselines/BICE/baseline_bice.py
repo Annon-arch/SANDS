@@ -249,9 +249,12 @@ Tweet_list = []
 Target_list = []
 Stance_list = []
 Id = []
-
+print(X_train.head(2))
 for i,j in X_train.iterrows():
-    tw = EncodedTweetDFLabel_w_label_INFO['Tweet'][i]
+    try:
+        tw = j['Tweet']
+    except:
+        tw = EncodedTweetDFLabel_w_label['Tweet'][i]
     tag = j['Tag']
     stance_ = LABEL_MAPPING_INV[tag]
     Train_Tweet_list.append(tw)
@@ -265,7 +268,10 @@ for i,j in X_train.iterrows():
 TrainTweetDF = pd.DataFrame(list(zip(Train_Id, Train_Tweet_list, Train_Target_list, Train_Stance_list)), columns=['ID', 'Tweet', 'Target', 'Stance'])
 
 for i,j in X_val.iterrows():
-    tw = EncodedTweetDFLabel_w_label_INFO['Tweet'][i]
+    try:
+        tw = j['Tweet']
+    except:
+        tw = EncodedTweetDFLabel_w_label['Tweet'][i]
     tag = j['Tag']
     stance_ = LABEL_MAPPING_INV[tag]
     Test_Tweet_list.append(tw)
@@ -628,7 +634,7 @@ def train(testsetting, w2vmodel, tweets, targets, labels, ids,
     X = w2vmodel.wv.syn0
     vocab_size = len(w2vmodel.wv.vocab)
 
-    outfolder = "_".join([testid, modeltype, testsetting, "hidden-" + str(hidden_size), tanhOrSoftmax, "USA_500"])
+    outfolder = "_".join([testid, modeltype, testsetting, "hidden-" + str(hidden_size), tanhOrSoftmax])
     # outfolder = "/content/drive/My Drive/IP data/Baseline/BiCE/" + outfolder
 
     model, placeholders = get_model_bidirectional_conditioning(batch_size, max_seq_length, input_size, hidden_size, target_size,
@@ -665,7 +671,7 @@ def train(testsetting, w2vmodel, tweets, targets, labels, ids,
     corpus_test_batch = BatchBucketSampler(data_test, batch_size)
 
     with tf.Session() as sess:
-        summary_writer = tf.summary.FileWriter("./out_USA_500/save", graph_def=sess.graph_def)
+        summary_writer = tf.summary.FileWriter("./out/save", graph_def=sess.graph_def)
         print('--------',outfolder,'--------')
         hooks = [
             SaveModelHookDev(path=outfolder, at_every_epoch=1),
